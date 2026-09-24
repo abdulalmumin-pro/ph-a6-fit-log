@@ -2,12 +2,8 @@ import React from "react";
 import { ILibrary } from "@/types/libraryType";
 import LibraryCard from "./LibraryCard";
 
-
 const getLibraryData = async () => {
   try {
-    // const response = await fetch(
-    //   `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/data.json`
-    // );
     const response = await fetch("http://localhost:3000/data.json");
 
     if (!response.ok) {
@@ -24,23 +20,40 @@ const getLibraryData = async () => {
 
 const Library = async () => {
   const libraryData = await getLibraryData();
-  console.log(libraryData, "library");
 
   return (
-    <div className="mx-8 mt-12 mb-8">
-      <h2 className="text-3xl font-bold">THE LIBRARY</h2>
-      <p className="text-gray-400">
-        Twelve lifts covering every major muscle group.
-      </p>
+    <section className="mx-auto mt-8 mb-8 w-full max-w-7xl px-4 sm:mt-10 sm:px-6 lg:mt-12 lg:px-8">
+      {/* Header */}
+      <div>
+        <h2 className="text-2xl font-bold sm:text-3xl">
+          THE LIBRARY
+        </h2>
 
-      <div className="grid grid-cols-3 gap-4 mt-4">
-        {
-          libraryData.map((library:ILibrary, ind:number) => {
-            return <LibraryCard key={ind} library={library}></LibraryCard>
-          })
-        }
+        <p className="mt-1 text-sm text-gray-400 sm:text-base">
+          Twelve lifts covering every major muscle group.
+        </p>
       </div>
-    </div>
+
+      {/* Cards */}
+      <div
+        className="
+          mt-6
+          grid
+          grid-cols-1
+          gap-5
+          sm:grid-cols-2
+          lg:grid-cols-3
+          xl:grid-cols-3
+        "
+      >
+        {libraryData.map((library: ILibrary, ind: number) => (
+          <LibraryCard
+            key={library.id ?? ind}
+            library={library}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 

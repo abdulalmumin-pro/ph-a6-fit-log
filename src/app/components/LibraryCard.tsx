@@ -1,5 +1,6 @@
 import { ILibrary } from "@/types/libraryType";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface PropsType {
@@ -8,62 +9,125 @@ interface PropsType {
 
 const LibraryCard = ({ library }: PropsType) => {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-800 bg-[#15171c] shadow-sm">
+    <div
+      className="
+        group
+        w-full
+        overflow-hidden
+        rounded-2xl
+        border border-gray-800
+        bg-[#15171c]
+        shadow-sm
+        transition-all
+        duration-300
+        ease-out
+        hover:-translate-y-2
+        hover:border-lime-400/40
+        hover:shadow-xl
+        hover:shadow-lime-400/10
+      "
+    >
       {/* Image */}
-      <figure className="h-[265px] w-full overflow-hidden">
-        <Image
-          src={library.image}
-          width={740}
-          height={500}
-          alt={library.name}
-          className="h-full w-full object-cover"
-        />
+      <figure className="h-[220px] w-full overflow-hidden sm:h-[240px] md:h-[265px]">
+        <Link href={`/details/${library.id}`} className="block h-full w-full">
+          <Image
+            src={library.image}
+            width={740}
+            height={500}
+            alt={library.name}
+            className="
+              h-full
+              w-full
+              object-cover
+              transition-transform
+              duration-500
+              ease-out
+              group-hover:scale-105
+            "
+          />
+        </Link>
       </figure>
 
       {/* Content */}
-      <div className="p-8">
-        {/* Muscle groups */}
-        <div className="mb-5 flex flex-wrap gap-3">
+      <div className="p-4 sm:p-5 md:p-6">
+        {/* Muscle Groups */}
+        <div className="mb-2 flex flex-wrap gap-2 sm:gap-3">
           {library.muscleGroups.map((muscle, index) => (
             <span
               key={index}
-              className="rounded-full bg-lime-400 px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-black"
+              className="
+                rounded-full
+                bg-lime-400
+                px-3
+                py-1
+                text-xs
+                font-bold
+                uppercase
+                tracking-wide
+                text-black
+                transition-transform
+                duration-300
+                group-hover:scale-105
+                sm:px-4
+                sm:text-sm
+              "
             >
               {muscle}
             </span>
           ))}
         </div>
 
-        {/* Exercise name */}
-        <h2 className="text-2xl font-black uppercase tracking-wide text-white">
+        {/* Exercise Name */}
+        <h2
+          className="
+            text-xl
+            font-black
+            uppercase
+            tracking-wide
+            text-white
+            transition-colors
+            duration-300
+            group-hover:text-lime-400
+            sm:text-2xl
+          "
+        >
           {library.name}
         </h2>
 
         {/* Equipment */}
-        <p className="mt-2 text-base text-gray-400">
+        <p className="mt-2 text-sm text-gray-400 sm:text-base">
           {library.equipment}
         </p>
 
         {/* Divider */}
-        <div className="my-5 border-t border-gray-800" />
+        <div className="my-3 border-t border-gray-800" />
 
         {/* Stats */}
-        <div className="flex items-center gap-6 text-sm text-gray-400">
-          {/* Duration */}
+        <div
+          className="
+            flex
+            flex-wrap
+            items-center
+            gap-x-4
+            gap-y-2
+            text-xs
+            text-gray-400
+            sm:gap-6
+            sm:text-sm
+          "
+        >
           <div className="flex items-center gap-2">
-            <span className="text-lg">◷</span>
+            <span className="text-base sm:text-lg">◷</span>
             <span>{library.duration} min</span>
           </div>
 
-          {/* Calories */}
           <div className="flex items-center gap-2">
-            <span className="text-lg">♨</span>
+            <span className="text-base sm:text-lg">♨</span>
             <span>{library.caloriesBurned} kcal</span>
           </div>
 
-          {/* Rating */}
           <div className="flex items-center gap-2">
-            <span className="text-lg">☆</span>
+            <span className="text-base sm:text-lg">☆</span>
             <span>{library.rating}</span>
           </div>
         </div>

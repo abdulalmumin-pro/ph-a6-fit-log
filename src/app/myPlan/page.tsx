@@ -1,8 +1,9 @@
+import Link from "next/link";
 import React from "react";
 
 const MyPlan = () => {
   return (
-    <div className="mx-8 my-8">
+    <div className="mx-32 my-8">
       <h2 className="text-3xl font-bold">MY PLAN</h2>
       <p className="text-gray-400">
         Cap of five lifts for today. Finish them, then load more.
@@ -23,7 +24,9 @@ const MyPlan = () => {
       <div className="flex flex-col justify-center items-center mt-8 bg-base-100 rounded-sm py-16 border border-gray-700">
          <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
          <p className="text-gray-400">Browse the library and add a lift to get today moving.</p>
-         <button className="text-xs text-black rounded-2xl bg-[#C2F800] py-2 px-5 mt-4">Go to workouts</button>
+         <button className="text-xs text-black rounded-2xl bg-[#C2F800] py-2 px-5 mt-4">
+          <Link href="/">Go to workouts</Link>
+          </button>
       </div>
     </div>
   );
