@@ -1,16 +1,19 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Logo from "@/assets/logo.png"
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathName = usePathname();
   const links = (
     <>
       <li>
-        <Link href="/workouts">Workouts</Link>
+        <Link className={`${pathName === '/workouts' ? 'text-[#C2F800]' : ''}`}  href="/workouts">Workouts</Link>
       </li>
       <li>
-        <Link href="/myPlan">My Plan</Link>
+        <Link className={`${pathName === '/myPlan' ? 'text-[#C2F800]' : ''}`} href="/myPlan">My Plan</Link>
       </li>
     </>
   );
