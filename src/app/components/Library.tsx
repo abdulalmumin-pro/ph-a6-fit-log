@@ -22,7 +22,7 @@ const Library = async () => {
   const libraryData = await getLibraryData();
 
   return (
-    <section className="mx-auto mt-8 mb-8 w-full max-w-7xl px-4 sm:mt-10 sm:px-6 lg:mt-12 lg:px-8">
+    <section className="mx-auto my-8 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 w-full max-w-[1920px]">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold sm:text-3xl">
@@ -43,7 +43,6 @@ const Library = async () => {
           gap-5
           sm:grid-cols-2
           lg:grid-cols-3
-          xl:grid-cols-3
         "
       >
         {libraryData.map((library: ILibrary, ind: number) => (

@@ -1,3 +1,6 @@
+
+import PlanBtn from '@/app/components/contextButton/PlanBtn';
+import SaveBtn from '@/app/components/contextButton/SaveBtn';
 import { ILibrary } from '@/types/libraryType';
 import Image from 'next/image';
 import React from 'react';
@@ -151,18 +154,8 @@ const Slug = async ({ params }: ParamType) => {
 
           {/* Action Buttons - Compact Height */}
           <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
-            <button className="flex-1 bg-[#ccff00] text-black font-bold py-2.5 px-4 rounded-lg hover:bg-[#b8e600] transition flex items-center justify-center gap-2 text-xs">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" />
-              </svg>
-              Add to today's plan
-            </button>
-            <button className="flex-1 bg-[#14171d] text-zinc-300 font-medium py-2.5 px-4 rounded-lg border border-zinc-800 hover:bg-zinc-800 transition flex items-center justify-center gap-2 text-xs">
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-              </svg>
-              Save for later
-            </button>
+            <PlanBtn libraryDetails={libraryDetails}></PlanBtn>
+            <SaveBtn libraryDetails={libraryDetails}></SaveBtn>
           </div>
 
         </div>

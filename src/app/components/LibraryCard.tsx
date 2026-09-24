@@ -1,3 +1,4 @@
+
 import { ILibrary } from "@/types/libraryType";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,10 +10,12 @@ interface PropsType {
 
 const LibraryCard = ({ library }: PropsType) => {
   return (
-    <div
-      className="
+    <Link href={`/details/${library.id}`}>
+      <div
+        className="
         group
         w-full
+        h-full
         overflow-hidden
         rounded-2xl
         border border-gray-800
@@ -26,10 +29,9 @@ const LibraryCard = ({ library }: PropsType) => {
         hover:shadow-xl
         hover:shadow-lime-400/10
       "
-    >
-      {/* Image */}
-      <figure className="h-[220px] w-full overflow-hidden sm:h-[240px] md:h-[265px]">
-        <Link href={`/details/${library.id}`} className="block h-full w-full">
+      >
+        {/* Image */}
+        <figure className="h-[220px] w-full overflow-hidden sm:h-[240px] md:h-[265px]">
           <Image
             src={library.image}
             width={740}
@@ -45,17 +47,16 @@ const LibraryCard = ({ library }: PropsType) => {
               group-hover:scale-105
             "
           />
-        </Link>
-      </figure>
+        </figure>
 
-      {/* Content */}
-      <div className="p-4 sm:p-5 md:p-6">
-        {/* Muscle Groups */}
-        <div className="mb-2 flex flex-wrap gap-2 sm:gap-3">
-          {library.muscleGroups.map((muscle, index) => (
-            <span
-              key={index}
-              className="
+        {/* Content */}
+        <div className="p-4 sm:p-5 md:p-6 min-h-[220px] sm:min-h-[230px] md:min-h-[235px]">
+          {/* Muscle Groups */}
+          <div className="mb-2 flex min-h-[32px] flex-wrap gap-2 sm:gap-3">
+            {library.muscleGroups.map((muscle, index) => (
+              <span
+                key={index}
+                className="
                 rounded-full
                 bg-lime-400
                 px-3
@@ -71,15 +72,16 @@ const LibraryCard = ({ library }: PropsType) => {
                 sm:px-4
                 sm:text-sm
               "
-            >
-              {muscle}
-            </span>
-          ))}
-        </div>
+              >
+                {muscle}
+              </span>
+            ))}
+          </div>
 
-        {/* Exercise Name */}
-        <h2
-          className="
+          {/* Exercise Name */}
+          <h2
+            className="
+            min-h-[28px]
             text-xl
             font-black
             uppercase
@@ -88,23 +90,24 @@ const LibraryCard = ({ library }: PropsType) => {
             transition-colors
             duration-300
             group-hover:text-lime-400
+            sm:min-h-[32px]
             sm:text-2xl
           "
-        >
-          {library.name}
-        </h2>
+          >
+            {library.name}
+          </h2>
 
-        {/* Equipment */}
-        <p className="mt-2 text-sm text-gray-400 sm:text-base">
-          {library.equipment}
-        </p>
+          {/* Equipment */}
+          <p className="mt-2 min-h-[24px] text-sm text-gray-400 sm:text-base">
+            {library.equipment}
+          </p>
 
-        {/* Divider */}
-        <div className="my-3 border-t border-gray-800" />
+          {/* Divider */}
+          <div className="my-3 border-t border-gray-800" />
 
-        {/* Stats */}
-        <div
-          className="
+          {/* Stats */}
+          <div
+            className="
             flex
             flex-wrap
             items-center
@@ -115,25 +118,27 @@ const LibraryCard = ({ library }: PropsType) => {
             sm:gap-6
             sm:text-sm
           "
-        >
-          <div className="flex items-center gap-2">
-            <span className="text-base sm:text-lg">◷</span>
-            <span>{library.duration} min</span>
-          </div>
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-base sm:text-lg">◷</span>
+              <span>{library.duration} min</span>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-base sm:text-lg">♨</span>
-            <span>{library.caloriesBurned} kcal</span>
-          </div>
+            <div className="flex items-center gap-2">
+              <span className="text-base sm:text-lg">♨</span>
+              <span>{library.caloriesBurned} kcal</span>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-base sm:text-lg">☆</span>
-            <span>{library.rating}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-base sm:text-lg">☆</span>
+              <span>{library.rating}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 export default LibraryCard;
+
