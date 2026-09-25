@@ -19,10 +19,9 @@ const MyPlan = () => {
 
   const { plan, setPlan, save, setSave } = fitContext;
 
-  // বর্তমান ট্যাব অনুযায়ী তালিকা নির্বাচন
   const currentRawList: ILibrary[] = activeTab === "plan" ? plan : save;
 
-  // Sort By অনুযায়ী আইটেম সাজানো
+  // Sort
   const currentList = [...currentRawList].sort((a, b) => {
     if (sortBy === "duration") {
       return (Number(b.duration) || 0) - (Number(a.duration) || 0);
@@ -36,7 +35,7 @@ const MyPlan = () => {
     return 0;
   });
 
-  // Top Stats ক্যালকুলেশন (Today's Plan এর ওপর ভিত্তি করে)
+  // Top Stats 
   const totalExercises = plan.length;
   const totalMinutes = plan.reduce(
     (acc, item) => acc + (Number(item.duration) || 0),
@@ -47,7 +46,7 @@ const MyPlan = () => {
     0
   );
 
-  // রিমুভ করার হ্যান্ডলার
+
   const handleRemove = (id: string | number) => {
     if (activeTab === "plan") {
       setPlan(plan.filter((item) => item.id !== id));

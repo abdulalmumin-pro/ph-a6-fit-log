@@ -1,20 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FitContext } from "@/context/FitContext";
 
 const Navbar = () => {
   const pathName = usePathname();
+
+  // Get plan and save from FitContext
+  const fitContext = useContext(FitContext);
+
+  if (!fitContext) {
+    throw new Error("Navbar must be used within a FitContextProvider");
+  }
+
+  const { plan, save } = fitContext;
 
   const links = (
     <>
       <li>
         <Link
           href="/"
-          className={pathName === "/" ? "text-[#C2F800] bg-base-100" : ""}
+          className={
+            pathName === "/"
+              ? "text-[#C2F800] bg-base-100"
+              : ""
+          }
         >
           Workouts
         </Link>
@@ -23,7 +37,11 @@ const Navbar = () => {
       <li>
         <Link
           href="/myPlan"
-          className={pathName === "/myPlan" ? "text-[#C2F800] bg-base-100" : ""}
+          className={
+            pathName === "/myPlan"
+              ? "text-[#C2F800] bg-base-100"
+              : ""
+          }
         >
           My Plan
         </Link>
@@ -33,8 +51,10 @@ const Navbar = () => {
 
   return (
     <div className="navbar border-b-2 border-base-100 sticky top-0 z-30 bg-[#0B1020] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-32">
+
       {/* LEFT SIDE */}
       <div className="navbar-start">
+
         {/* Mobile Menu */}
         <div className="dropdown">
           <div
@@ -75,18 +95,23 @@ const Navbar = () => {
             className="w-8 h-8 sm:w-9 sm:h-9"
           />
 
-          <span className="hidden sm:block text-xl font-bold">FITLOG</span>
+          <span className="hidden sm:block text-xl font-bold">
+            FITLOG
+          </span>
         </Link>
       </div>
 
       {/* CENTER NAVIGATION */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-4">{links}</ul>
+        <ul className="menu menu-horizontal px-1 gap-4">
+          {links}
+        </ul>
       </div>
 
       {/* RIGHT SIDE */}
       <div className="navbar-end">
         <div className="flex items-center gap-5 sm:gap-8">
+
           {/* PLAN */}
           <Link
             href="/myPlan"
@@ -95,7 +120,7 @@ const Navbar = () => {
             <span>Plan</span>
 
             <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#C2F800] text-black text-xs font-medium">
-              0
+              {plan.length}
             </span>
           </Link>
 
@@ -107,9 +132,10 @@ const Navbar = () => {
             <span>Saved</span>
 
             <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-700 text-xs text-gray-300">
-              0
+              {save.length}
             </span>
           </Link>
+
         </div>
       </div>
     </div>
